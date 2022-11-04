@@ -39,20 +39,12 @@ def about():
 @app.route("/read")
 def read():
     Result = ""     
-    collection_ref = db.collection("1111")
-    docs = collection_ref.get()
-    for doc in docs:
-    dict = doc.to_dict()
-    if cond in dict["Course"]:
-        print(dict["Leacture"]+"老師開的"+dict["Course"]+"課程，每周"+dict["Time"]+"於"+dict["Room"]+"上課")
-
-    #collection_ref = db.collection("1111")    
-    #docs = collection_ref.order_by("Course", direction=firestore.Query.DESCENDING).get()    
-    #for doc in docs:   
-    #    dict = doc.to_dict()
-    #    if cond in dict["Course"]:      
-    #    Result += dict["Leacture"]+"老師開的"+dict["Course"]+"課程，每周"+dict["Time"]+"於"+dict["Room"]+"上課" + "<br>"    
+    collection_ref = db.collection("1111")    
+    docs = collection_ref.order_by("Course", direction=firestore.Query.DESCENDING).get()    
+    for doc in docs:         
+        Result += "文件內容：{}".format(doc.to_dict()) + "<br>"    
     return Result
+
 
 #if __name__ == "__main__":
 #    app.run()
