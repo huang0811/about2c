@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    homepage = "<h1>黃鈺慈Python網頁</h1>"
+    homepage = "<h1>黃鈺慈</h1>"
     homepage += "<a href=/mis>MIS</a><br>"
     homepage += "<a href=/today>顯示日期時間</a><br>"
     homepage += "<a href=/welcome?nick=育慈>傳送使用者暱稱</a><br>"
@@ -40,7 +40,7 @@ def about():
 def read():
     Result = ""     
     collection_ref = db.collection("1111")    
-    docs = collection_ref.order_by("mail", direction=firestore.Query.DESCENDING).get()    
+    docs = collection_ref.order_by("Course", direction=firestore.Query.DESCENDING).get()    
     for doc in docs:         
         Result += dict["Leacture"]+"老師開的"+dict["Course"]+"課程，每周"+dict["Time"]+"於"+dict["Room"]+"上課" + "<br>"    
     return Result
