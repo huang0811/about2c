@@ -40,7 +40,7 @@ def about():
 def read():
     Result = ""     
     collection_ref = db.collection("1111")    
-    docs = collection_ref.order_by("mail", direction=firestore.Query.DESCENDING).get()    
+    docs = collection_ref.order_by("Course", direction=firestore.Query.DESCENDING).get()    
     for doc in docs:         
         Result += dict["Leacture"]+"老師開的"+dict["Course"]+"課程，每周"+dict["Time"]+"於"+dict["Room"]+"上課" + "<br>"    
     return Result
