@@ -39,12 +39,17 @@ def about():
 @app.route("/read", methods=["GET", "POST"])
 def read():
     if request.method == "POST":
-        Result = ""     
+        cond = request.form["keyword"]
+        result = "您輸入的課程關鍵字是："+ cond  
+        db = firestore.client()   
         collection_ref = db.collection("1111")    
-        docs = collection_ref.order_by("Course", direction=firestore.Query.DESCENDING).get()    
-        #for doc in docs:         
-        Result += "文件內容：{}".format(doc.to_dict()) + "<br>"    
-        return Result
+        docs = collection_ref.get()
+        result = ""    
+        for doc in docs:
+            dict = doc.to_dict()
+            if cond in dict["Course"]:         
+                result += dict["Leacture"]+"老師開的"+dict["Course"]+"課程，每周"+dict["Time"]+"於"+dict["Room"]+"上課"  
+        return result
     else:
         return render_template("read.html")
 
