@@ -48,7 +48,7 @@ def read():
         for doc in docs:
             dict = doc.to_dict()
             if cond in dict["Course"]:         
-                result += dict["Leacture"]+"老師開的"+dict["Course"]+"課程，每周"+dict["Time"]+"於"+dict["Room"]+"上課"  
+                result += dict["Leacture"]+"老師開的"+dict["Course"]+"課程，每周"+dict["Time"]+"於"+dict["Room"]+"上課<br>"  
         return result
     else:
         return render_template("read.html")
