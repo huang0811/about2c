@@ -36,15 +36,17 @@ def welcome():
 def about():
     return render_template("aboutme.html")
 
-@app.route("/read")
+@app.route("/read", methods=["GET", "POST"])
 def read():
-    Result = ""     
-    collection_ref = db.collection("1111")    
-    docs = collection_ref.order_by("Course", direction=firestore.Query.DESCENDING).get()    
-    for doc in docs:         
+    if request.method == "POST":
+        Result = ""     
+        collection_ref = db.collection("1111")    
+        docs = collection_ref.order_by("Course", direction=firestore.Query.DESCENDING).get()    
+        #for doc in docs:         
         Result += "文件內容：{}".format(doc.to_dict()) + "<br>"    
-    return Result
-
+        return Result
+    else:
+        return render_template("read.html")
 
 #if __name__ == "__main__":
 #    app.run()
